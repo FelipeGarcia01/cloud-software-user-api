@@ -39,6 +39,8 @@ def signup():
         return {}, 201
     except KeyError:
         return {"error": "Bad request"}, 400
+    finally:
+        database.session.close()
 
 
 @api_routes.route('/auth/login', methods=['POST'])
@@ -55,3 +57,5 @@ def login():
 
     except KeyError:
         return {"error": "Bad request"}, 400
+    finally:
+        database.session.close()
